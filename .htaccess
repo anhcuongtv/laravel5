@@ -1,0 +1,38 @@
+
+#AddHandler application/x-httpd-php52 .php
+#suPHP_ConfigPath /usr/local/lib/php52/
+
+RewriteEngine on
+# -FrontPage-
+
+IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+
+<Limit GET POST>
+order deny,allow
+deny from all
+allow from all
+</Limit>
+<Limit PUT DELETE>
+order deny,allow
+deny from all
+</Limit>
+AuthName ytuongweb.com
+AuthUserFile /home/ytuongwe/public_html/_vti_pvt/service.pwd
+AuthGroupFile /home/ytuongwe/public_html/_vti_pvt/service.grp
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+RewriteCond %{HTTP_HOST} ^sandeal\.chewyjunior\.com\.vn$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.sandeal\.chewyjunior\.com\.vn$
+RewriteRule ^/?$ "\/deal\/" [R=301,L]
+
