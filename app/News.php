@@ -10,7 +10,6 @@ class News extends Model {
         'title',
         'content',
         'publish_at'
-
     ];
 
     protected $dates = ['publish_at'];
@@ -33,7 +32,7 @@ class News extends Model {
     }
 
     /**
-     * A News is owned by a user
+     * A
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(){
